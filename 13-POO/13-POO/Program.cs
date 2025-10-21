@@ -34,7 +34,7 @@ namespace _13_POO
                     case "1":
                         if (cantidadAlumnos < MAX_ALUMNOS)
                         {
-                            AgregarAlumno(nombres, promedios, cantidadAlumnos);
+                            AgregarAlumno(nombres, promedios, ref cantidadAlumnos);
                         }
                         break;
 
@@ -64,9 +64,8 @@ namespace _13_POO
                 Console.ReadKey();
             }
         }
-
         // MÉTODO 1: Agregar alumno
-        static void AgregarAlumno(string[] nombres, double[] promedios, int cantidad)
+        static void AgregarAlumno(string[] nombres, double[] promedios,ref int cantidad)
         {
             Console.Write("Ingrese el nombre del alumno: ");
             string nombre = Console.ReadLine();
