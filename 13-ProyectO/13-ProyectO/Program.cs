@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
@@ -14,63 +15,69 @@ namespace _13_ProyectO
         {
             int salir = 0;
             string[] alumnos = new string[5];
-            int opcion = 0;
             int cantidad = 0;
+            int opcion = 0;
             do
             {
-                /*
-                    Crear 4 usuarios
-                    Listar (Corroborar que figuren)
-                    Eliminar (Corroborar que ya no figure) que usuario./no es el alumno =otra vez/ Nombres Mays.Mins
-                    Actualizar (Corroborar que se actualice bien)
-                 */
                 Console.Clear();
                 Console.WriteLine("===== GESTOR DE ALUMNOS =====");
                 Console.WriteLine("1. Agregar alumno");
                 Console.WriteLine("2. Actualizar");
                 Console.WriteLine("3. Listar Todos");
                 Console.WriteLine("4. Traer Por ID");
-                Console.WriteLine("5. Salir");
-                Console.Write("Elegí una opción: ");
+                Console.WriteLine("5. Eliminar alumno");
+                Console.WriteLine("6. Salir");
+                bool entradaValida = false;
+                while (!entradaValida)
+                {
+                    Console.WriteLine("Elige una opción (1 a 6):");
+                    string input = Console.ReadLine();
 
-                opcion = int.Parse(Console.ReadLine());
-                if(opcion >=1 && opcion <=5)
-                {
-                    switch (opcion)
+                    if (int.TryParse(input, out opcion) && opcion >= 1 && opcion <= 6)
                     {
-                        case 1:
-                            AddStudend(alumnos, ref cantidad);
-                            break;
-                        case 2:
-                            UpdateNameShowConsol(cantidad, ref alumnos);
-                            break;
-                        case 3:
-                            List(cantidad, alumnos);
-                            break;
-                        case 4:
-                            GetIdNameShowConsol(ref cantidad, alumnos);
-                            break;
-                        default:
-                            salir = 5;
-                            break;
+                        entradaValida = true;
+                    }
+                    else
+                    {
+                        Console.WriteLine("No es una opción válida, inténtalo de nuevo :/");
                     }
                 }
-                else
+                switch (opcion)
                 {
-                    while (opcion <= 0 || opcion >= 5)
-                    {
-                        Console.WriteLine("No es una opcion a elejir, intentalo de nuevo :/");
-                        opcion = int.Parse(Console.ReadLine());
-                    }
+                    case 1:
+                        AddStudend(alumnos, ref cantidad);
+                        break;
+                    case 2:
+                        UpdateNameShowConsol(cantidad, ref alumnos);
+                        break;
+                    case 3:
+                        List(cantidad, alumnos);
+                        break;
+                    case 4:
+                        GetIdNameShowConsol(ref cantidad, alumnos);
+                        break;
+                    case 5:
+                        DeleteStudent(ref cantidad, alumnos);
+                        break;
+                    default:
+                        salir = 6;
+                        break;
                 }
-            }while (salir < 4);
+            } while (salir < 5);
         }
         static void AddStudend(string[]names, ref int cantidad)
         {
+
             if(cantidad <= 4)
             {
                 Console.WriteLine("Ingresa el nombre del alumno:");
                 string name = Console.ReadLine();
+
+                while(string.IsNullOrWhiteSpace(name) || !Regex.IsMatch(name, @"^[a-zA-Z]+$"))//validacion con chat
+                {
+                    Console.WriteLine("No es un nombre valido, ingresa un nombre valido...");
+                    name = Console.ReadLine();
+                }
                 names[cantidad] = name;
                 cantidad++;
             }
@@ -122,10 +129,6 @@ namespace _13_ProyectO
                 }
             }
             return nameGive;
-            /*
-                    Console.WriteLine("Alumno encontrado---->" + alumnos[i]);
-                    Console.WriteLine("Cambia el nombre como gustes:");
-            */
         }
         static void UpdateNameShowConsol(int cantidad, ref string[] alumnos)
         {
@@ -143,6 +146,11 @@ namespace _13_ProyectO
                     if(nameUpdShow == alumnos[i])
                     {
                         nameUpdShow = Console.ReadLine();
+                        while (string.IsNullOrWhiteSpace(nameUpdShow) || !Regex.IsMatch(nameUpdShow, @"^[a-zA-Z]+$"))
+                        {
+                            Console.WriteLine("No es un nombre valido, ingresa un nombre valido...");
+                            nameUpdShow = Console.ReadLine();
+                        }
                         alumnos[i] = nameUpdShow;
                     }
                 }
@@ -158,6 +166,40 @@ namespace _13_ProyectO
             for (int i = 0; i < cantidad; i++)
             {
                 Console.WriteLine(alumnos[i]);
+            }
+            Console.ReadKey();
+        }
+        static void DeleteStudent(ref int cantidad, string[] alumnos)
+        {
+            if (cantidad == 0)
+            {
+                Console.WriteLine("No hay alumnos para eliminar.");
+                Console.ReadKey();
+                return;//vuelve al inicio
+            }
+            Console.WriteLine("¿Qué alumno deseas eliminar?");
+            string nameToDelete = Console.ReadLine();
+            bool encontrado = false;
+            for (int i = 0; i < cantidad; i++)
+            {
+                if (alumnos[i].Equals(nameToDelete, StringComparison.OrdinalIgnoreCase))//Ignora las mayus 
+                {
+                    // Mover todos los que siguen una posición hacia atrás
+                    for (int j = i; j < cantidad - 1; j++)
+                    {
+                        alumnos[j] = alumnos[j + 1];
+                    }
+
+                    alumnos[cantidad - 1] = null; // Limpia la última posición
+                    cantidad--; // Disminuye la cantidad usada
+                    encontrado = true;
+                    Console.WriteLine($"Alumno '{nameToDelete}' eliminado correctamente.");
+                    break;//rompe y no deja seguir el for
+                }
+            }
+            if (!encontrado)
+            {
+                Console.WriteLine($"No se encontró el alumno ---> "+nameToDelete);
             }
             Console.ReadKey();
         }
