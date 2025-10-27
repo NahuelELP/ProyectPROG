@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36518.9 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "POO-ModificadoresAcceso", "POO-ModificadoresAcceso\POO-ModificadoresAcceso.csproj", "{DCA236D7-9D9C-41B8-A8E2-9B24D1DED8FA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModificadoresAcceso2", "ModificadoresAcceso2\ModificadoresAcceso2.csproj", "{877A7423-CABD-4477-A0F4-C9FD860C28CD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DCA236D7-9D9C-41B8-A8E2-9B24D1DED8FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCA236D7-9D9C-41B8-A8E2-9B24D1DED8FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCA236D7-9D9C-41B8-A8E2-9B24D1DED8FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCA236D7-9D9C-41B8-A8E2-9B24D1DED8FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{877A7423-CABD-4477-A0F4-C9FD860C28CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{877A7423-CABD-4477-A0F4-C9FD860C28CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{877A7423-CABD-4477-A0F4-C9FD860C28CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{877A7423-CABD-4477-A0F4-C9FD860C28CD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D7B85F15-42E5-4148-B921-2E443D1A2014}
+	EndGlobalSection
+EndGlobal
