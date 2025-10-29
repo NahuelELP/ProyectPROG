@@ -14,6 +14,7 @@ namespace GettersSetters
 
             pelota1.SetPeso(200);
             Console.WriteLine(pelota1.GetPeso());
+
             pelota1.SetColor("azul");
             Console.WriteLine(pelota1.GetColor());
 
