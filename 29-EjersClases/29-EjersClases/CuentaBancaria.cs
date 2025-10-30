@@ -45,7 +45,14 @@ namespace _29_EjersClases
         {
             return this.numeroDeCuenta;
         }
-
+        public double RetiraDinero(double retiraDinero)
+        {
+            return this.saldo - retiraDinero;
+        }
+        public double IntroducirDinero(double introducirDinero)
+        {
+            return this.saldo = introducirDinero;
+        }
 
 
     }

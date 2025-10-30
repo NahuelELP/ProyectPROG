@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 
 namespace _29_EjersClases
 {
@@ -35,12 +36,22 @@ namespace _29_EjersClases
                 switch (opcion)
                 {
                     case 1:
+                        Console.WriteLine("Intrdouce dinero: ");
+                        double dineroIntroducido = double.Parse(Console.ReadLine());
+                        CuentaDeBanco.SetSaldo(dineroIntroducido);
+                        Console.WriteLine("El dinero introducido fue de: {0} y el monto acutal es de {1}",dineroIntroducido,saldoCuenta=CuentaDeBanco.IntroducirDinero(dineroIntroducido));
                         break;
                     case 2:
+                        Console.WriteLine("Cuando dinero kiere retirar?: ");
+                        double dineroRetirado= double.Parse(Console.ReadLine());
+                        Console.WriteLine("El dinero retirado fue de: {0} y el saldo actual es de: {1}",dineroRetirado,saldoCuenta=CuentaDeBanco.RetiraDinero(dineroRetirado));
+                        Console.ReadKey();
                         break;
                     case 3:
                         CuentaDeBanco.SetTitular(nombreTitutal);
                         Console.WriteLine(CuentaDeBanco.GetTitular());
+                        CuentaDeBanco.SetSaldo(saldoCuenta);
+                        Console.WriteLine("Su cuenta tiene: {0} Euros",CuentaDeBanco.GetSaldo());
                         Console.ReadKey();
                         break;
                     case 4:
