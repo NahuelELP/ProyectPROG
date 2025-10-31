@@ -38,8 +38,9 @@ namespace _29_EjersClases
                     case 1:
                         Console.WriteLine("Intrdouce dinero: ");
                         double dineroIntroducido = double.Parse(Console.ReadLine());
-                        CuentaDeBanco.SetSaldo(dineroIntroducido);
-                        Console.WriteLine("El dinero introducido fue de: {0} y el monto acutal es de {1}",dineroIntroducido,saldoCuenta=CuentaDeBanco.IntroducirDinero(dineroIntroducido));
+                        CuentaDeBanco.IntroducirDinero(dineroIntroducido);
+                        Console.WriteLine("El dinero introducido fue de: {0} y el monto acutal es de {1}",dineroIntroducido,saldoCuenta = CuentaDeBanco.GetSaldo());
+                        Console.ReadKey();
                         break;
                     case 2:
                         Console.WriteLine("Cuando dinero kiere retirar?: ");
@@ -48,10 +49,10 @@ namespace _29_EjersClases
                         Console.ReadKey();
                         break;
                     case 3:
-                        CuentaDeBanco.SetTitular(nombreTitutal);
+                        /*CuentaDeBanco.SetTitular(nombreTitutal);*/
                         Console.WriteLine(CuentaDeBanco.GetTitular());
-                        CuentaDeBanco.SetSaldo(saldoCuenta);
-                        Console.WriteLine("Su cuenta tiene: {0} Euros",CuentaDeBanco.GetSaldo());
+                        /*CuentaDeBanco.SetSaldo(saldoCuenta);*/
+                        Console.WriteLine("Su cuenta tiene: {0} Euros",saldoCuenta = CuentaDeBanco.GetSaldo());
                         Console.ReadKey();
                         break;
                     case 4:
