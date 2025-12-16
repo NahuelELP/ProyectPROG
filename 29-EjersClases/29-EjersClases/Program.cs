@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Timers;
 
@@ -12,15 +13,27 @@ namespace _29_EjersClases
         static void Main(string[] args)
         {
             Console.WriteLine("=== MENÚ BANCO ===");
-            Console.WriteLine("Crearteu una cuenta de Banco BBVA ;)");
+            Console.WriteLine("Crearte una cuenta de Banco BBVA)");
+
             Console.WriteLine("Nombre del Titular de la cuenta: ");
             string nombreTitutal = Console.ReadLine();
+            Interfaz NombreValidacion = new Interfaz();
+            NombreValidacion.NombreDelTitular(nombreTitutal);
+
             Console.WriteLine("Saldo de la Cuenta: ");
             double saldoCuenta = int.Parse(Console.ReadLine());
+            Interfaz SaldoValidacion = new Interfaz();
+            SaldoValidacion.SaldoDeLaCuenta(saldoCuenta);
+
             Console.WriteLine("Numero de la Cuenta de banco: ");
             int numDeCuenta = int.Parse(Console.ReadLine());
+            Interfaz NumeroCuentaValidacion= new Interfaz();
+            NumeroCuentaValidacion.NumeroDeCuenta(numDeCuenta);
+
             CuentaBancaria CuentaDeBanco = new CuentaBancaria(nombreTitutal, saldoCuenta, numDeCuenta);
+
             bool salir = false;
+
             while (!salir)
             {
                 Console.Clear();
@@ -50,7 +63,7 @@ namespace _29_EjersClases
                         break;
                     case 3:
                         /*CuentaDeBanco.SetTitular(nombreTitutal);*/
-                        Console.WriteLine(CuentaDeBanco.GetTitular());
+                        Console.WriteLine("Nombre: " + CuentaDeBanco.GetTitular());
                         /*CuentaDeBanco.SetSaldo(saldoCuenta);*/
                         Console.WriteLine("Su cuenta tiene: {0} Euros",saldoCuenta = CuentaDeBanco.GetSaldo());
                         Console.ReadKey();
@@ -62,6 +75,7 @@ namespace _29_EjersClases
 
                     default:
                         Console.WriteLine("Opción inválida.");
+                        Console.ReadKey();
                         break;
                 }
             }
