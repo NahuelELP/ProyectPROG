@@ -10,7 +10,7 @@ namespace PooConstructores
     {
         static void Main(string[] args)
         {
-            Telefono telefono1 =new Telefono();
+            Telefono telefono1 = new Telefono();
             Telefono telefono2 = new Telefono(258,4,50,48, true);
 
             Console.WriteLine(telefono1.InfoMemoria());
