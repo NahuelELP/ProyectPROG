@@ -2,36 +2,66 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace _18_12_Ejer
 {
     internal class NotificacionSms : Notificacion
     {
-        private bool sms;
-        private int numero; //Se usa?
-        public bool Sms { get; set; }
-        public int Numero { get; set; }
-        public NotificacionSms(string name, string mensaje, bool sms, int numero) : base(name, mensaje)
+        private string sms;
+        private string numero;
+        private string patron = @"^\+351\s?\d{9}$";
+        public string Sms { 
+            get 
+            {
+                return sms;
+            }
+            set
+            {
+                sms = ViaSms(value);
+            }
+        }
+        public string Numero { 
+            get 
+            {
+                return numero;
+            }
+            set 
+            { 
+                numero = ValidarNumero(value);
+            }
+        }
+        public NotificacionSms(string name, string mensaje, string sms, string numero) : base(name, mensaje)
         {
             Sms = sms;
             Numero = numero;
         }
-        // Metodo validar Numeros portugueses +351
-        public int ViaSms()
+        public string ViaSms(string validarSms)
         {
-            if (Sms == true)
+            if (validarSms == "si")
             {
-                return Numero;
+                return "Si";
             }
             else
             {
-                return 0;//que no retorne 0
+                return "Desconocido";//que no retorne 0
+            }
+        }
+        public string ValidarNumero(string numeroValidar)// Metodo validar Numeros portugueses +351.937.874.448
+        {
+            if(Regex.IsMatch(numeroValidar, patron))
+            {
+                return numeroValidar;
+            }
+            else
+            {
+                return "Numero no valido";
             }
         }
         public override void InfoGeneral()
         {
-            Console.WriteLine("{0} Te envio un mensaje\nRemitente via SMS: {1}\nCantidad de mensajes {2}", Nombre, ViaSms(), CantidadMensaje());
+            Console.WriteLine("{0} Te envio un mensaje\nRemitente via SMS: {1}\nCantidad de mensajes {2}\nNumero: {3}", Nombre, Sms, CantidadMensaje(), Numero);
         }
     }
 }

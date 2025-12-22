@@ -12,7 +12,7 @@ namespace _18_12_Ejer
         {
             Notificacion noti = new Notificacion("Nahuel", "Hola como estas?");
             NotificacionEmail notiEmail = new NotificacionEmail(noti.Nombre , noti.Mensaje, true, "nahuellassos90@gmail.com");
-            NotificacionSms notiSms = new NotificacionSms(noti.Nombre, noti.Mensaje, true, 937874448);
+            NotificacionSms notiSms = new NotificacionSms(noti.Nombre, noti.Mensaje, "si", "+351 937874448");
             noti.InfoGeneral();
             Console.WriteLine("--------------");
             notiEmail.InfoGeneral();
